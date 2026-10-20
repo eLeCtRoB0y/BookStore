@@ -5,15 +5,20 @@
              Startup="Application_Startup"
              DispatcherUnhandledException="Application_DispatcherUnhandledException">
     <Application.Resources>
-        <!-- Руководство по стилю: основной фон, дополнительный фон, акцентный цвет, шрифт. -->
+        <!-- Руководство по стилю (Приложение 3): основной фон #FFFFFF, дополнительный #ABCFCE, акцент #546F94, шрифт Comic Sans MS. -->
         <SolidColorBrush x:Key="MainBackgroundBrush" Color="#FFFFFF" />
-        <SolidColorBrush x:Key="SecondaryBackgroundBrush" Color="#E3F4FB" />
-        <SolidColorBrush x:Key="AccentBrush" Color="#29A9E1" />
-        <SolidColorBrush x:Key="AccentDarkBrush" Color="#1B87B8" />
+        <SolidColorBrush x:Key="SecondaryBackgroundBrush" Color="#ABCFCE" />
+        <SolidColorBrush x:Key="AccentBrush" Color="#546F94" />
+        <SolidColorBrush x:Key="AccentDarkBrush" Color="#3F5573" />
         <SolidColorBrush x:Key="BigDiscountBrush" Color="#23E1EF" />
         <SolidColorBrush x:Key="OutOfStockBrush" Color="#D3D3D3" />
         <SolidColorBrush x:Key="BorderBrushMain" Color="#000000" />
-        <FontFamily x:Key="MainFont">Times New Roman</FontFamily>
+        <FontFamily x:Key="MainFont">Comic Sans MS</FontFamily>
+
+        <!-- Логотип выводится из исходного файла без изменений; Viewbox лишь отсекает его прозрачные поля,
+             Stretch="Uniform" сохраняет пропорции. -->
+        <ImageBrush x:Key="LogoBrush" ImageSource="/Resources/logo.png" Stretch="Uniform"
+                    Viewbox="0.209,0.352,0.58,0.304" ViewboxUnits="RelativeToBoundingBox" />
 
         <conv:PhotoPathConverter x:Key="PhotoConverter" />
         <BooleanToVisibilityConverter x:Key="BoolToVisibility" />

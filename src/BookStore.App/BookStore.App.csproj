@@ -9,7 +9,7 @@
     <RootNamespace>BookStore.App</RootNamespace>
     <AssemblyName>BookStore</AssemblyName>
     <ApplicationIcon>Resources\app.ico</ApplicationIcon>
-    <Product>Читай-город: учёт товаров</Product>
+    <Product>ЧитайГород: учёт товаров</Product>
     <!-- Позволяет собирать проект и на не-Windows машинах (CI). -->
     <EnableWindowsTargeting>true</EnableWindowsTargeting>
   </PropertyGroup>

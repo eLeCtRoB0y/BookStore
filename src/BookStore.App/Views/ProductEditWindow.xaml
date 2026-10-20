@@ -15,7 +15,7 @@
 
         <Border Grid.Row="0" Background="{StaticResource SecondaryBackgroundBrush}" Padding="12,8">
             <StackPanel Orientation="Horizontal">
-                <Image Source="/Resources/logo.png" Height="40" Margin="0,0,16,0" />
+                <Border Background="{StaticResource LogoBrush}" Width="124" Height="40" Margin="0,0,16,0" />
                 <TextBlock x:Name="HeaderText" Text="Редактирование товара" Style="{StaticResource HeaderTitle}" />
             </StackPanel>
         </Border>
