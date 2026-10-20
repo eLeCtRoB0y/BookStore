@@ -1,0 +1,90 @@
+<Window x:Class="BookStore.App.Views.OrdersWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Заказы — Читай-город"
+        Style="{StaticResource WindowStyle}"
+        Width="1000" Height="700" MinWidth="800" MinHeight="450"
+        WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <Style x:Key="OrderItemStyle" TargetType="ListBoxItem">
+            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+            <Setter Property="Padding" Value="0" />
+            <Setter Property="Margin" Value="0,0,0,8" />
+            <EventSetter Event="PreviewMouseLeftButtonUp" Handler="OrderItem_Click" />
+        </Style>
+
+        <DataTemplate x:Key="OrderTemplate">
+            <Border BorderBrush="{StaticResource BorderBrushMain}" BorderThickness="1" Padding="6"
+                    Background="{StaticResource MainBackgroundBrush}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="200" />
+                    </Grid.ColumnDefinitions>
+                    <Border Grid.Column="0" BorderBrush="{StaticResource BorderBrushMain}" BorderThickness="1"
+                            Padding="8,4" Margin="0,0,6,0">
+                        <StackPanel>
+                            <TextBlock FontWeight="Bold" FontSize="16" TextWrapping="Wrap">
+                                <Run Text="Заказ №" /><Run Text="{Binding OrderId, Mode=OneWay}" /><Run Text=": " /><Run Text="{Binding ArticleText, Mode=OneWay}" />
+                            </TextBlock>
+                            <TextBlock>
+                                <Run Text="Статус заказа: " /><Run Text="{Binding StatusName, Mode=OneWay}" />
+                            </TextBlock>
+                            <TextBlock TextWrapping="Wrap">
+                                <Run Text="Адрес пункта выдачи: " /><Run Text="{Binding PickupAddress, Mode=OneWay}" />
+                            </TextBlock>
+                            <TextBlock>
+                                <Run Text="Дата заказа: " /><Run Text="{Binding OrderDateText, Mode=OneWay}" />
+                            </TextBlock>
+                        </StackPanel>
+                    </Border>
+                    <Border Grid.Column="1" BorderBrush="{StaticResource BorderBrushMain}" BorderThickness="2">
+                        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                            <TextBlock Text="Дата доставки" HorizontalAlignment="Center" />
+                            <TextBlock Text="{Binding DeliveryDateText}" FontSize="18" FontWeight="Bold"
+                                       HorizontalAlignment="Center" />
+                        </StackPanel>
+                    </Border>
+                </Grid>
+            </Border>
+        </DataTemplate>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Border Grid.Row="0" Background="{StaticResource SecondaryBackgroundBrush}" Padding="12,8">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Image Grid.Column="0" Source="/Resources/logo.png" Height="50" Margin="0,0,16,0" />
+                <TextBlock Grid.Column="1" Text="Заказы" Style="{StaticResource HeaderTitle}" />
+                <StackPanel Grid.Column="2" VerticalAlignment="Center">
+                    <TextBlock x:Name="UserNameText" FontWeight="Bold" HorizontalAlignment="Right" />
+                    <TextBlock x:Name="UserRoleText" HorizontalAlignment="Right" Foreground="#555555" />
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <DockPanel Grid.Row="1" Margin="12,8,12,0" LastChildFill="False">
+            <Button x:Name="BackButton" DockPanel.Dock="Left" Content="Назад" Style="{StaticResource SecondaryButton}"
+                    Click="BackButton_Click" ToolTip="Вернуться к списку товаров" />
+            <Button x:Name="AddOrderButton" DockPanel.Dock="Right" Content="Добавить заказ" Click="AddOrderButton_Click" />
+            <TextBlock x:Name="CountText" DockPanel.Dock="Left" VerticalAlignment="Center" Margin="12,0"
+                       Foreground="#555555" />
+        </DockPanel>
+
+        <ListBox Grid.Row="2" x:Name="OrdersList" Margin="12,8"
+                 ItemTemplate="{StaticResource OrderTemplate}"
+                 ItemContainerStyle="{StaticResource OrderItemStyle}"
+                 ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                 BorderThickness="0" />
+    </Grid>
+</Window>

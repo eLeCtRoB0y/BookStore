@@ -1,0 +1,82 @@
+<Window x:Class="BookStore.App.Views.OrderEditWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Редактирование заказа"
+        Style="{StaticResource WindowStyle}"
+        Width="640" Height="560" MinWidth="560" MinHeight="520"
+        WindowStartupLocation="CenterOwner"
+        Closed="Window_Closed">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <Border Grid.Row="0" Background="{StaticResource SecondaryBackgroundBrush}" Padding="12,8">
+            <StackPanel Orientation="Horizontal">
+                <Image Source="/Resources/logo.png" Height="40" Margin="0,0,16,0" />
+                <TextBlock x:Name="HeaderText" Text="Редактирование заказа" Style="{StaticResource HeaderTitle}" />
+            </StackPanel>
+        </Border>
+
+        <Grid Grid.Row="1" Margin="16,12">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <TextBlock x:Name="IdLabel" Grid.Row="0" Text="Номер заказа" Style="{StaticResource FieldLabel}" />
+            <TextBox x:Name="IdBox" Grid.Row="0" Grid.Column="1" Margin="0,4" IsReadOnly="True" Background="#EEEEEE" />
+
+            <TextBlock Grid.Row="1" Text="Артикул *" Style="{StaticResource FieldLabel}" />
+            <TextBox x:Name="ArticleBox" Grid.Row="1" Grid.Column="1" Margin="0,4"
+                     ToolTip="Состав заказа: артикул и количество через запятую, например A112T4, 2, G843H5, 1" />
+            <TextBlock Grid.Row="2" Grid.Column="1" Foreground="Gray" TextWrapping="Wrap" Margin="0,0,0,4"
+                       Text="Формат: Артикул, количество, Артикул, количество (например A112T4, 2, G843H5, 1)" />
+
+            <TextBlock Grid.Row="3" Text="Статус заказа *" Style="{StaticResource FieldLabel}" />
+            <ComboBox x:Name="StatusBox" Grid.Row="3" Grid.Column="1" Margin="0,4"
+                      DisplayMemberPath="Name" SelectedValuePath="Id" />
+
+            <TextBlock Grid.Row="4" Text="Адрес пункта выдачи *" Style="{StaticResource FieldLabel}" />
+            <ComboBox x:Name="PickupPointBox" Grid.Row="4" Grid.Column="1" Margin="0,4"
+                      DisplayMemberPath="Name" SelectedValuePath="Id" />
+
+            <TextBlock Grid.Row="5" Text="Клиент *" Style="{StaticResource FieldLabel}" />
+            <ComboBox x:Name="ClientBox" Grid.Row="5" Grid.Column="1" Margin="0,4"
+                      DisplayMemberPath="Name" SelectedValuePath="Id" />
+
+            <TextBlock Grid.Row="6" Text="Код для получения *" Style="{StaticResource FieldLabel}" />
+            <TextBox x:Name="CodeBox" Grid.Row="6" Grid.Column="1" Margin="0,4" ToolTip="Целое положительное число" />
+
+            <TextBlock Grid.Row="7" Text="Дата заказа *" Style="{StaticResource FieldLabel}" />
+            <DatePicker x:Name="OrderDatePicker" Grid.Row="7" Grid.Column="1" Margin="0,4" />
+
+            <TextBlock Grid.Row="8" Text="Дата выдачи *" Style="{StaticResource FieldLabel}" />
+            <DatePicker x:Name="DeliveryDatePicker" Grid.Row="8" Grid.Column="1" Margin="0,4"
+                        ToolTip="Не может быть раньше даты заказа" />
+        </Grid>
+
+        <Border Grid.Row="2" Background="{StaticResource SecondaryBackgroundBrush}" Padding="12,6">
+            <DockPanel LastChildFill="False">
+                <Button x:Name="BackButton" DockPanel.Dock="Left" Content="Назад"
+                        Style="{StaticResource SecondaryButton}" IsCancel="True" Click="BackButton_Click" />
+                <Button x:Name="SaveButton" DockPanel.Dock="Right" Content="Сохранить" Click="SaveButton_Click" />
+                <Button x:Name="DeleteButton" DockPanel.Dock="Right" Content="Удалить заказ"
+                        Style="{StaticResource DangerButton}" Click="DeleteButton_Click" />
+            </DockPanel>
+        </Border>
+    </Grid>
+</Window>
